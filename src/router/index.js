@@ -44,7 +44,7 @@ export default new Router({
         component:Goods
       },
       {
-        path:'/goods/detail',
+        path:'/goods/detail/:id',
         component:GoodsDetail
       },
       {
@@ -52,7 +52,7 @@ export default new Router({
         component:News
       },
       {
-        path:'/news/detail',
+        path:'/news/detail/:id',
         component:NewsDetail
       },
       {
@@ -60,8 +60,13 @@ export default new Router({
         component:Pictures
       },
       {
-        path:'/pics/detail',
+        path:'/pics/detail/:id',
         component:PicDetail
-      }
-  ]
+      },
+      {
+        path:'/',
+        redirect:'/home'
+      },
+  ],
+  linkActiveClass:'mui-active'
 })
