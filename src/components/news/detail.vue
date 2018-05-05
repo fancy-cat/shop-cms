@@ -1,12 +1,6 @@
 <template>
   <div class="alldetail">
-    <h4>{{details.title}}</h4>
-    <p>
-      <span>{{details.add_time}}</span>
-      <span class="mui-pull-right">点击：{{details.click}}次</span>
-    </p>
-    <hr>
-    <div v-html="details.content"></div>
+    <detail :details="details"></detail>
     <comment :artid="$route.params.id"></comment>
     
   </div>
@@ -15,7 +9,7 @@
 <script>
 import axios from 'axios';
 import comment from '../common/comment';
-
+import detail from '../common/detail';
 
 
 export default {
@@ -34,7 +28,8 @@ export default {
    })
  },
   components:{
-    comment
+    comment,
+    detail
   }
 
 }

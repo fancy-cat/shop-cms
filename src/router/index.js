@@ -56,7 +56,7 @@ export default new Router({
         component:NewsDetail
       },
       {
-        path:'/pics',
+        path:'/pics/:id?',
         component:Pictures
       },
       {

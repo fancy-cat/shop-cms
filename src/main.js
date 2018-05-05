@@ -14,7 +14,10 @@ Vue.use(MintUI);
 //引入mui
 import '../src/assets/mui/css/mui.css'
 import '../src/assets/mui/css/icons-extra.css'
-// import '../src/assets/mui/js/mui(1)/mui.min.js'
+
+//引入vue-preview插件
+import VuePrevie from 'vue-preview'
+Vue.use(VuePrevie);
 
 /* eslint-disable no-new */
 new Vue({

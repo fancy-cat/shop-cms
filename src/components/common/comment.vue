@@ -73,14 +73,18 @@ export default {
         data:"content="+this.content
       }).then(res=>{
         if(res.data.status == 0){
-          this.commentList.unshift({
-            user_name:'匿名用户',
-            add_time:new Date(),
-            content:this.content
-          });
-          this.content = "";
+          if(this.content.trim()){
+                this.commentList.unshift({
+                user_name:'匿名用户',
+                add_time:new Date(),
+                content:this.content
+              });
+                this.content = "";
+            }else{
+              Toast("请输入评价~")
             }
-          })   
+          }
+        })   
     }
   },
   filters:{

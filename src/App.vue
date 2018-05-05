@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="page">
+  <div id="app">
     <mt-header fixed title="小龟宝的cms">
         <mt-button v-if="$route.path!='/home'" icon="back" slot="left" @click= $router.go(-1)>返回</mt-button>
     </mt-header>
@@ -42,7 +42,10 @@ body {
   background-color: #fff;
 }
  .page {
-   padding:40px 8px 50px;
+   padding:40px 0px 50px;
+ }
+ .alldetail {
+   padding: 40px 8px 50px;
  }
 
 </style>

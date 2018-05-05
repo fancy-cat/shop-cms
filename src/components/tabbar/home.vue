@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="page">
     <mt-swipe :auto="2000">
       <mt-swipe-item v-for="(item,index) in picList" :key="index">
-        <img :src="item.img" >
+        <img :src="item.img">
       </mt-swipe-item>
     </mt-swipe>
 
@@ -13,7 +13,7 @@
           <div class="mui-media-body">新闻资讯</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to='/pics'>
+        <router-link to='/pics/0'>
           <img src="@/assets/images/menu2.png">
           <div class="mui-media-body">图片分享</div>
         </router-link></li>
@@ -47,19 +47,19 @@ import axios from "axios";
 export default {
   data() {
     return {
-      picList: []
+      picList: [],
+      imgheight:'',
     };
   },
   created() {
     axios({
       url: "http://www.escook.cn:3000/api/getlunbo"
     }).then(res => {
-      console.log(res);
       if (res.data.status == 0) {
         this.picList = res.data.message;
       }
     });
-  }
+  },
 };
 </script>
 
@@ -69,6 +69,7 @@ export default {
 }
 .mint-swipe img {
   width: 100%;
+  height:auto;
 }
 .mui-table-view img {
   width: 40px;

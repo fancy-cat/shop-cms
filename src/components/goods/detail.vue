@@ -1,5 +1,5 @@
 <template>
-  <div>商品详情</div>
+  <div class="allDetail">商品详情</div>
 </template>
 
 <script>
