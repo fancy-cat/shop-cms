@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <span v-for="(v,i) in goodsList" :key="i" class="goods-item">
+    <span v-for="(v,i) in goodsList" :key="i" class="goods-item" @click="$router.push('/goods/detail/'+v.id)">
       <img :src="v.img_url" alt="">
       <h4>{{v.title}}</h4>
       <span class="info">
@@ -39,7 +39,6 @@ export default {
         url:'http://www.escook.cn:3000/api/getgoods?pageindex='+this.pageindex
       }).then(res=>{
         if(res.data.status==0){
-          console.log(res.data.message.length)
           if(res.data.message.length>0){
             this.goodsList.push(...res.data.message);
           }else{
