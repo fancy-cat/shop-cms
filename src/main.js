@@ -19,10 +19,15 @@ import '../src/assets/mui/css/icons-extra.css'
 import VuePrevie from 'vue-preview'
 Vue.use(VuePrevie);
 
+//引入vuex
+import store from './store';
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store,
 })

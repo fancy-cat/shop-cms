@@ -20,7 +20,10 @@
             <del >￥7988</del></span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span >销售价:<span  class="sale_price">￥7200</span></span></div>
 					</div>
-          <bumberbox min='0' :max="goodsdetail.stock_quantity" step='1' v-model="count"></bumberbox>
+          <div>
+            <span>购买数量：</span>
+            <bumberbox min='0' :max="goodsdetail.stock_quantity" step='1' v-model="count"></bumberbox>
+          </div>
           <div class="btns">
             <button class="mint-button mint-button--primary mint-button--normal">
               <label class="mint-button-text">立即购买</label></button> 
@@ -88,11 +91,13 @@ export default {
     },
     addCart(){
       this.isShow=true;
-      //将商品id和数量存入本地
+      //将商品id和数量传给$store
       var obj = {
         id:this.$route.params.id,
         count:this.count
-      }
+      };
+      this.$store.commit("addCarts",obj);
+      
     }
   },
   created(){

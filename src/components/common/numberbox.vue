@@ -1,7 +1,6 @@
 <template>
     <div class="buynum">
         <h4>
-            <span>购买数量：</span>
             <div class="btnwrap">
             <button class="reducebtn" @click="reducebtn">-</button>
             <input type="num" v-model="num">
