@@ -31,7 +31,7 @@ export default new Vuex.Store({
         getids:state=>state.cartsInfo.map(v=>v.id).join(","),
         //根据id获取对应的商品数量
         getcountbyid:state=>id=>{
-            var temp = state.cartsInfo.find(v=>v.id=id);
+            var temp = state.cartsInfo.find(v=>v.id==id);
             return temp.count;
         }
     },
