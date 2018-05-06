@@ -3,9 +3,9 @@
         <h4>
             <span>购买数量：</span>
             <div class="btnwrap">
-            <button class="reducebtn">-</button>
-            <input type="num" placeholder="0">
-            <button class="addbtn">+</button>
+            <button class="reducebtn" @click="reducebtn">-</button>
+            <input type="num" v-model="num">
+            <button class="addbtn" @click="addbtn">+</button>
             </div>
         </h4>
     </div>  
@@ -13,7 +13,34 @@
 
 <script>
 export default {
-  
+  data(){
+      return {
+          num:0
+      }
+  },
+  props:['min','max','step','value'],
+  methods:{
+      reducebtn(){
+          if(this.num >= this.min+ this.step){
+            this.num -= +this.step;
+            this.$emit('input',this.num);
+          }
+      },
+      addbtn(){
+          if( this.num <= this.max- this.step){
+            this.num += +this.step;  
+            this.$emit('input',this.num);         
+          }
+      }
+  },
+  watch:{
+    value:{
+        handler:function(nv,ov){
+            this.num = nv;
+        },
+        immediate:true
+    }
+  }
 }
 </script>
 

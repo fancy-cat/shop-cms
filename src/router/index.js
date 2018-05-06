@@ -7,6 +7,7 @@ Vue.use(Router)
 import Goods from '@/components/goods/list'
 import GoodsDetail from '@/components/goods/detail'
 import GoodsDesc from '@/components/goods/goodsdesc'
+import GoodsCom from '@/components/goods/comment'
 
 //引入新闻组件
 import News from '@/components/news/list'
@@ -51,6 +52,10 @@ export default new Router({
       {
         path:'/goods/detail/desc/:id',
         component:GoodsDesc
+      },
+      {
+        path:'/goods/detail/comment/:id',
+        component:GoodsCom
       },
       {
         path:'/news',

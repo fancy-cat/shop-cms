@@ -20,12 +20,12 @@
             <del >￥7988</del></span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span >销售价:<span  class="sale_price">￥7200</span></span></div>
 					</div>
-          <bumberbox></bumberbox>
+          <bumberbox min='0' :max="goodsdetail.stock_quantity" step='1' v-model="count"></bumberbox>
           <div class="btns">
             <button class="mint-button mint-button--primary mint-button--normal">
               <label class="mint-button-text">立即购买</label></button> 
-            <button class="mint-button mint-button--danger mint-button--normal">
-              <label class="mint-button-text">加入购物车</label></button></div>
+            <button class="mint-button mint-button--danger mint-button--normal" @click="addCart">
+              <label class="mint-button-text" >加入购物车</label></button></div>
 				</div>
 			</div>
 				<div class="mui-card">
@@ -38,12 +38,16 @@
 					</div>
           <div class="btns">
            <mt-button type="primary" size="large" plain @click="$router.push('/goods/detail/desc/'+goodsdetail.id)">商品描述</mt-button>
-           <mt-button type="danger" size="large" plain>商品评论</mt-button>
+           <mt-button type="danger" size="large" plain @click="$router.push('/goods/detail/comment/'+ goodsdetail.id)">商品评论</mt-button>
           </div>
 				</div>
 			</div>
-		
-  </div>
+    </div>
+    
+    <!-- 过渡的小球 -->
+    <transition v-on:before-enter="beforeEnter" v-on:enter="enter">
+      <div class="ball" v-if="isShow"></div>
+    </transition>
   </div>
   
 </template>
@@ -57,7 +61,38 @@ export default {
   data(){
     return {
       lunbos:[],
-      goodsdetail:{}
+      goodsdetail:{},
+      count:0,
+      isShow:false
+    }
+  },
+  methods:{
+    beforeEnter(el){
+      this.isShow = true;
+      el.style.left = "180px";
+      el.style.top = "550px";
+    },
+    enter(el){
+      el.style.transition = "all 1s"      
+      el.offsetHeight;      
+      
+      el.style.left="250px";
+
+      // 小球距离顶部的距离 550px=a
+      // 购物车小球距离顶部的最大距离 885px ,最小距离为一个屏幕高，屏幕高+滚动距离-底部距离=该距离b
+      // 小球最终的top=b
+
+      el.style.top=screen.height+window.pageYOffset-45+"px";
+      this.isShow = false;
+      
+    },
+    addCart(){
+      this.isShow=true;
+      //将商品id和数量存入本地
+      var obj = {
+        id:this.$route.params.id,
+        count:this.count
+      }
     }
   },
   created(){
@@ -79,11 +114,15 @@ export default {
   },
   components:{
     bumberbox
-  }
+  },
+
 }
 </script>
 
 <style scoped>
+.alldetail {
+  position: relative;
+}
 .mint-swipe{
   height:264px;
 }
@@ -104,5 +143,15 @@ export default {
 
 .mint-button {
   margin-bottom: 5px;
+}
+.ball {
+  position:absolute;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  left:180px;
+  top: 550px;
+  z-index:999;
 }
 </style>
